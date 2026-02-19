@@ -68,7 +68,13 @@ export default function RecipeDetail({ user }) {
 
   return (
     <div>
-      <img src={recipe.image} alt={recipe.title} />
+      <img 
+        src={recipe.image && recipe.image !== "null"
+          ? `http://localhost:3000/uploads/${recipe.image}`
+          : `./default-image.png`
+        } 
+        alt={recipe.title} 
+      />
       <h1>{recipe.title}</h1>
       <p>By {recipe.author}</p>
       
