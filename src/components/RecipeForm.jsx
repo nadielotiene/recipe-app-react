@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
+// eslint-disable-next-line
 export default function RecipeForm({ user }) {
 
   const [title, setTitle] = useState("");
@@ -72,6 +73,10 @@ export default function RecipeForm({ user }) {
     }
   }
 
+  function handleCancel() {
+    navigate("/");
+  }
+
   useEffect(() => {
     if (isEditMode) {
       async function fetchRecipe() {
@@ -98,120 +103,133 @@ export default function RecipeForm({ user }) {
   }, [id, isEditMode]);
 
   return (
-    <div>
-      <h1>{isEditMode ? "Edit Recipe" : "Create Recipe"}</h1> 
-      
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Title</label>
-          <input 
-            type="text" 
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-        </div>
+    <div className="body">
+      <div className="container">
+        <h1 className="title">{isEditMode ? "Edit Recipe" : "Create Recipe"}</h1> 
+        
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Recipe Title *</label>
+            <input 
+              type="text" 
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+            />
+          </div>
 
-        <div>
-          <label>Ingredients</label>
-          <textarea
-            value={ingredients}
-            onChange={(e) => setIngredients(e.target.value)}
-            required
-          />
-        </div>
+          <div className="form-group">
+            <label>Ingredients * (separate with commas)</label>
+            <textarea
+              value={ingredients}
+              onChange={(e) => setIngredients(e.target.value)}
+              required
+            />
+          </div>
 
-        <div>
-          <label>Instructions</label>
-          <textarea 
-            value={instructions}
-            onChange={(e) => setInstructions(e.target.value)}
-            required
-          />
-        </div>
+          <div className="form-group">
+            <label>Instructions * (separate with commas)</label>
+            <textarea 
+              value={instructions}
+              onChange={(e) => setInstructions(e.target.value)}
+              required
+            />
+          </div>
 
-        <div>
-          <label>Prep Time (minutes)</label>
-          <input 
-            type="number" 
-            value={prepTime}
-            onChange={(e) => setPrepTime(e.target.value)}
-            required
-          />
-        </div>
+          <div className="form-three-rows">
+            <div className="form-group">
+              <label>Prep Time (minutes) *</label>
+              <input 
+                type="number" 
+                value={prepTime}
+                onChange={(e) => setPrepTime(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Cook Time (minutes) *</label>
+              <input 
+                type="number" 
+                value={cookTime}
+                onChange={(e) => setCookTime(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Servings *</label>
+              <input 
+                type="number" 
+                value={servings}
+                onChange={(e) => setServings(e.target.value)}
+                required
+              />
+            </div>
+          </div>
 
-        <div>
-          <label>Cook Time (minutes)</label>
-          <input 
-            type="number" 
-            value={cookTime}
-            onChange={(e) => setCookTime(e.target.value)}
-            required
-          />
-        </div>
+          <div className="form-two-rows">
+            <div className="form-group">
+              <label>Difficulty *</label>
+              <select
+                value={difficulty}
+                onChange={(e) => setDifficulty(e.target.value)}
+                required
+              >
+                <option value="">Select Difficulty</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <label>Category *</label>
+              <select
+                value={categoryId}
+                onChange={(e) => setCategoryId(e.target.value)}
+                required
+              >
+                <option value="">Select Category</option>
+                <option value="1">Breakfast</option>
+                <option value="2">Lunch</option>
+                <option value="3">Dinner</option>
+                <option value="4">Dessert</option>
+                <option value="5">Snacks</option>
+              </select>
+            </div>
+          </div>
 
-        <div>
-          <label>Servings</label>
-          <input 
-            type="number" 
-            value={servings}
-            onChange={(e) => setServings(e.target.value)}
-            required
-          />
-        </div>
 
-        <div>
-          <label>Difficulty</label>
-          <select
-            value={difficulty}
-            onChange={(e) => setDifficulty(e.target.value)}
-            required
-          >
-            <option value="">Select Difficulty</option>
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-          </select>
-        </div>
+          <div className="form-group">
+            <label>Recipe Image (optional)</label>
+            <input 
+              type="file" 
+              accept="image/*"
+              onChange={(e) => setImage(e.target.files[0])}
+            />
+              <small class="image-small">
+                Max size: 5MB. Formats: JPG, PNG, GIF, WEBP
+              </small>
+          </div>
 
-        <div>
-          <label>Category</label>
-          <select
-            value={categoryId}
-            onChange={(e) => setCategoryId(e.target.value)}
-            required
-          >
-            <option value="">Select Category</option>
-            <option value="1">Breakfast</option>
-            <option value="2">Lunch</option>
-            <option value="3">Dinner</option>
-            <option value="4">Dessert</option>
-            <option value="5">Snacks</option>
-          </select>
-        </div>
+          <div className="form-group">
+            <div className="checkbox-group">
+              <label>Mark as favorite</label>
+              <input 
+                type="checkbox" 
+                checked={favorite}
+                onChange={(e) => setFavorite(e.target.checked)}
+              />
+            </div>
+          </div>
 
-        <div>
-          <label>Recipe Image</label>
-          <input 
-            type="file" 
-            accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
-          />
-        </div>
-
-        <div>
-          <input 
-            type="checkbox" 
-            checked={favorite}
-            onChange={(e) => setFavorite(e.target.checked)}
-          />
-          <label>Mark as favorite</label>
-        </div>
-
-        <button type="submit">
-          {isEditMode ? "Update Recipe" : "Create Recipe"}
-        </button>
-      </form>
+          <button className="nav-btn nav-btn-primary create-btn" 
+            to="/new-recipe" type="submit">
+            {isEditMode ? "Update Recipe" : "Create Recipe"}
+          </button>
+          <button type="button" className="btn btn-secondary" onClick={handleCancel}>
+            Cancel
+          </button>
+        </form>
+      </div>
     </div>
   )
 }

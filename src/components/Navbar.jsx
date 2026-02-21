@@ -9,17 +9,21 @@ export default function Navbar({ user, setUser }) {
   }
 
   return (
-    <nav className="nav">
-      <Link to="/"><h1>🍳 My Recipes</h1></Link>
-      {user ? (
-        <div>
-          <p>Hello, {user.username}!</p>
-          <Link to="/new-recipe">Create Recipe</Link>
-          <button onClick={handleLogout}>Logout</button>
+    <div className="body">
+      <nav className="nav">
+        <div className="nav-content">
+          <Link className="nav-logo" to="/"><h1 className="nav-logo">🍳 My Recipes</h1></Link>
+          {user ? (
+            <div className="nav-links">
+              <Link className="nav-btn nav-btn-primary" to="/new-recipe">Create Recipe</Link>
+              <p className="nav-username">Hello, {user.username}!</p>
+              <button className="nav-btn nav-btn-secondary" onClick={handleLogout}>Logout</button>
+            </div>
+          ) : (
+            <Link className="nav-btn nav-btn-secondary" to="/login">Login</Link>
+          )}
         </div>
-      ) : (
-        <Link to="/login">Login</Link>
-      )}
-    </nav>
+      </nav>
+    </div>
   )
 }

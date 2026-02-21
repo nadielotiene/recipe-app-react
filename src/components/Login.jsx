@@ -85,92 +85,93 @@ export default function Login({ setUser }) {
   // }
 
   return (
-    <>
-    <div>
-      <h1>{isLoginMode ? "Login" : "Sign Up"}</h1>
-      {error && <p style={{color: "red"}}>{error}</p>}
+    <div className="login-page">
+      <div className="auth-container">
+        <h1 className="title">{isLoginMode ? "Login" : "Sign Up"}</h1>
+        {error && <p style={{color: "red"}}>{error}</p>}
+        <p className="subtitle">{isLoginMode ? "Login to your account" : "Create an account"}</p>
 
-      {isLoginMode ? (
-        <form onSubmit={handleLogin}>
-          <div className="form-group">
-            <label htmlFor="loginEmail">Email</label>
-            <input 
-              type="email" 
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="loginPassword">Password</label>
-            <input 
-              type="password" 
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <button type="button" className='cancel-btn'
-            onClick={handleCancel}        
-          >
-            Cancel
+        {isLoginMode ? (
+          <form onSubmit={handleLogin}>
+            <div className="form-group">
+              <label htmlFor="loginEmail">Email</label>
+              <input 
+                type="email" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="loginPassword">Password</label>
+              <input 
+                type="password" 
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <button type="button" className='cancel-btn'
+              onClick={handleCancel}        
+            >
+              Cancel
+            </button>
+            <button type="submit" className="btn btn-primary">
+              Login
+            </button>
+          </form>
+
+        ) : (
+
+          <form onSubmit={handleSignUp}>
+            <div className="form-group">
+              <label htmlFor="signupUsername">Username</label>
+              <input 
+                type="text" 
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="loginEmail">Email</label>
+              <input 
+                type="email" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="loginPassword">Password</label>
+              <input 
+                type="password" 
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <button type="button" className='cancel-btn'
+              onClick={handleCancel}        
+            >
+              Cancel
+            </button>
+            <button type="submit" className="btn btn-primary">
+              Sign Up
+            </button>
+          </form>
+
+        )}
+
+        <p>
+          {isLoginMode ? "Don't have an account? " : "Already have an account? "}
+          <button 
+            className="btn btn-primary"
+            onClick={() => setIsLoginMode(!isLoginMode)}>
+            {isLoginMode ? "Sign Up" : "Login"}
           </button>
-          <button type="submit" className="btn btn-primary">
-            Login
-          </button>
-        </form>
-
-      ) : (
-
-        <form onSubmit={handleSignUp}>
-          <div className="form-group">
-            <label htmlFor="signupUsername">Username</label>
-            <input 
-              type="text" 
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="loginEmail">Email</label>
-            <input 
-              type="email" 
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="loginPassword">Password</label>
-            <input 
-              type="password" 
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <button type="button" className='cancel-btn'
-            onClick={handleCancel}        
-          >
-            Cancel
-          </button>
-          <button type="submit" className="btn btn-primary">
-            Sign Up
-          </button>
-        </form>
-
-      )}
-
-      <p>
-        {isLoginMode ? "Don't have an account? " : "Already have an account? "}
-        <button 
-          className="btn btn-primary"
-          onClick={() => setIsLoginMode(!isLoginMode)}>
-          {isLoginMode ? "Sign Up" : "Login"}
-        </button>
-      </p>
+        </p>
+      </div>
     </div>
-    </>
   )
 }

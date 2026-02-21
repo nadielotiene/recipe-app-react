@@ -47,25 +47,50 @@ const filteredRecipes = recipes.filter(recipe => {
 });
 
   return (
-    <>
-      <div className="recipe-grid">
-        <h1>My Recipes</h1>
+    <div className="body">
+      <div className="container">
+        <header className="header">
+          <h1 className="title">🔍 My Recipe Collection</h1>
+        </header>
+
         <input
+          className="search-input"
           type="text"
           placeholder="Search recipes..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <br />
-        <br />
-        <button onClick={() => setSelectedFilter("all")}>All</button>
-        <button onClick={() => setSelectedFilter("easy")}>Easy</button>
-        <button onClick={() => setSelectedFilter("medium")}>Medium</button>
-        <button onClick={() => setSelectedFilter("hard")}>Hard</button>
+
+        <section className="difficulty-div">
+          <button 
+            className={`filter-btn ${selectedFilter === "all" ? "active" : ""}`} 
+            onClick={() => setSelectedFilter("all")}>
+            All
+          </button>
+          <button 
+            className={`filter-btn ${selectedFilter === "easy" ? "active" : ""}`} 
+            onClick={() => setSelectedFilter("easy")}>
+            Easy
+          </button>
+          <button 
+            className={`filter-btn ${selectedFilter === "medium" ? "active" : ""}`} 
+            onClick={() => setSelectedFilter("medium")}>
+            Medium
+          </button>
+          <button 
+            className={`filter-btn ${selectedFilter === "hard" ? "active" : ""}`} 
+            onClick={() => setSelectedFilter("hard")}>
+            Hard
+          </button>
+        </section>
+
+        {/* <div class="loading" id="loading">Loading recipes...</div> */}
+        <article className="recipe-grid" id="recipeGrid">
+          {filteredRecipes.map(recipe => (
+            <RecipeCard key={recipe.id} recipe={recipe} />
+          ))}
+        </article>
       </div>
-        {filteredRecipes.map(recipe => (
-          <RecipeCard key={recipe.id} recipe={recipe} />
-        ))}
-    </>
+    </div>
   )
 }
