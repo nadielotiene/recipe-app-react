@@ -85,93 +85,98 @@ export default function Login({ setUser }) {
   // }
 
   return (
-    <div className="login-page">
-      <div className="auth-container">
-        <h1 className="title">{isLoginMode ? "Login" : "Sign Up"}</h1>
-        {error && <p style={{color: "red"}}>{error}</p>}
-        <p className="subtitle">{isLoginMode ? "Login to your account" : "Create an account"}</p>
+    // <div className="body">
+      <div className="body login-page">
+        <div className="auth-container">
+          <h1 className="title">{isLoginMode ? "Login" : "Sign Up"}</h1>
+          {error && <p style={{color: "red"}}>{error}</p>}
+          <p className="subtitle">{isLoginMode ? "Login to your account" : "Create an account"}</p>
 
-        {isLoginMode ? (
-          <form onSubmit={handleLogin}>
-            <div className="form-group">
-              <label htmlFor="loginEmail">Email</label>
-              <input 
-                type="email" 
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="loginPassword">Password</label>
-              <input 
-                type="password" 
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-            <button type="button" className="btn btn-secondary"
-              onClick={handleCancel}        
-            >
-              Cancel
-            </button>
-            <button type="submit" className="btn btn-primary">
-              Login
-            </button>
-          </form>
+          {isLoginMode ? (
+            <form onSubmit={handleLogin}>
+              <div className="form-group">
+                <label htmlFor="loginEmail">Email</label>
+                <input 
+                  type="email" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="loginPassword">Password</label>
+                <input 
+                  type="password" 
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group form-btn">
+                <button type="submit" className="btn btn-primary">
+                  Login
+                </button>
+                <button type="button" className="btn btn-secondary"
+                  onClick={handleCancel}        
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
 
-        ) : (
+          ) : (
 
-          <form onSubmit={handleSignUp}>
-            <div className="form-group">
-              <label htmlFor="signupUsername">Username</label>
-              <input 
-                type="text" 
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="loginEmail">Email</label>
-              <input 
-                type="email" 
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="loginPassword">Password</label>
-              <input 
-                type="password" 
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-            <button type="button"  className="btn btn-secondary"
-              onClick={handleCancel}        
-            >
-              Cancel
-            </button>
-            <button type="submit" className="btn btn-primary">
-              Sign Up
-            </button>
-          </form>
+            <form onSubmit={handleSignUp}>
+              <div className="form-group">
+                <label htmlFor="signupUsername">Username</label>
+                <input 
+                  type="text" 
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="loginEmail">Email</label>
+                <input 
+                  type="email" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="loginPassword">Password</label>
+                <input 
+                  type="password" 
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group form-btn">
+                <button type="submit" className="btn btn-primary">
+                  Sign Up
+                </button>
+                <button type="button"  className="btn btn-secondary"
+                  onClick={handleCancel}        
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
 
-        )}
+          )}
 
-        <p>
-          {isLoginMode ? "Don't have an account? " : "Already have an account? "}
-          <button 
-            className="btn btn-primary"
-            onClick={() => setIsLoginMode(!isLoginMode)}>
-            {isLoginMode ? "Sign Up" : "Login"}
-          </button>
-        </p>
+          <p className="toggle-form">
+            {isLoginMode ? "Don't have an account? " : "Already have an account? "}
+            <a 
+              onClick={() => setIsLoginMode(!isLoginMode)}>
+              {isLoginMode ? "Sign Up" : "Login"}
+            </a>
+          </p>
+        </div>
       </div>
-    </div>
+    // </div>
   )
 }

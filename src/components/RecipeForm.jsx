@@ -226,12 +226,12 @@ export default function RecipeForm({ user, recipe }) {
           </div>
 
           <div className="button-group">
-            <button type="button" className="btn btn-secondary" onClick={handleCancel}>
-              Cancel
-            </button>
             <button className="btn btn-primary" 
               to="/new-recipe" type="submit">
               {isEditMode ? "Update Recipe" : "Create Recipe"}
+            </button>
+            <button type="button" className="btn btn-secondary" onClick={handleCancel}>
+              Cancel
             </button>
           </div>
         </form>

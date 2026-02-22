@@ -219,18 +219,18 @@ h1, .title {
 .recipe-card {
     background: var(--white);
     border-radius: 1rem;
-    padding: 1.5rem;
+    padding: 1.3rem;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     cursor: pointer;
     transition: all 0.3s;
     border: 2px solid transparent;
+    height: 100%;
 }
 
 .link-tag {
+    display: block;
     text-decoration: none;
     color: inherit;
-    margin: 0;
-    padding: 0;
 }
 
 .recipe-card:hover {
@@ -277,6 +277,7 @@ h1, .title {
     margin-top: 0.5rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    width:fit-content;
 }
 
 .category-badge.breakfast {
@@ -308,10 +309,12 @@ h1, .title {
    RECIPE DETAIL PAGE
    =================================== */
 .main {
+    display: flex;
+    flex-direction: column;
     background-color: var(--white);
     border-radius: 1.5rem;
     max-width: 50rem;
-    margin:  auto;
+    margin:  auto 1rem;
     padding: 2.5rem;
     box-shadow: 0 4px 16px rgba(0,0,0,0.1);
 }
@@ -453,13 +456,10 @@ table td {
 /* ===================================
    FORMS (Create/Edit/Login)
    =================================== */
-.form-group {
-    margin-bottom: 1.5rem;
-}
 
 label {
     display: block;
-    margin-bottom: 0.5rem;
+    margin: 0.5rem 0;
     font-weight: 600;
     color: var(--stone-900);
     font-size: 0.9rem;
@@ -527,6 +527,7 @@ textarea {
 .btn-primary {
     background-color: var(--brown-800);
     color: var(--white);
+    flex: 1;
 }
 
 .btn-primary:hover {
@@ -538,6 +539,7 @@ textarea {
 .btn-secondary {
     background-color: var(--stone-150);
     color: var(--stone-900);
+    flex: 1;
 }
 
 .btn-secondary:hover {
@@ -569,10 +571,16 @@ textarea {
     background-color: hsl(0, 70%, 40%);
 }
 
-.button-group {
+.button-group, .form-btn {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.form-btn {
+    flex-direction: column;
 }
 
 /* ===================================
@@ -596,11 +604,12 @@ textarea {
 /* ===================================
    LOGIN PAGE
    =================================== */
-body.login-page {
+.login-page {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    min-height: 100vh;
 }
 
 .auth-container {
@@ -670,7 +679,7 @@ body.login-page {
         padding: 1.5rem;
     }
     
-    #ownerActions {
+    .owner-actions, .button-group {
         flex-direction: column;
     }
 }
