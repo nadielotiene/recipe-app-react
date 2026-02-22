@@ -14,6 +14,8 @@ export default function RecipeForm({ user, recipe }) {
   const [categoryId, setCategoryId] = useState("");
   const [favorite, setFavorite] = useState(false);
   const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+  const [existingImage, setExistingImage] = useState(null);
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -93,6 +95,7 @@ export default function RecipeForm({ user, recipe }) {
           setDifficulty(recipe.difficulty);
           setCategoryId(recipe.category_id);
           setFavorite(recipe.favorite === 1);
+          setExistingImage(recipe.image);
         } catch (error) {
           console.error("Error fetching recipe:", error);
           alert("Failed to load recipe");
@@ -203,15 +206,29 @@ export default function RecipeForm({ user, recipe }) {
               className="img-input"
               type="file" 
               accept="image/*"
-              onChange={(e) => setImage(e.target.files[0])}
+              onChange={(e) => {
+                const imageFile = e.target.files[0];
+                setImage(imageFile);
+                if (imageFile) {
+                  setImagePreview(URL.createObjectURL(imageFile));
+                }
+              }}
             />
-              <small class="image-small">
-                Max size: 5MB. Formats: JPG, PNG, GIF, WEBP
-              </small>
-              <div className="current-image">
+            <small class="image-small">
+              Max size: 5MB. Formats: JPG, PNG, GIF, WEBP
+            </small>
 
+            {imagePreview ? (
+              <div className="current-image">
+                <p className="image-p">Preview: </p>
+                <img src={imagePreview} alt="Preview" className="create-recipe-image" />
               </div>
-              {/* {!recipe.image ? <p className="image-p">Current image:</p> : <img class="create-recipe-image" src="http://localhost:3000//uploads/${recipe.image}" alt="Current"></img>} */}
+            ) : existingImage && existingImage !== "null" ? (
+              <div className="current-image">
+                <p className="image-p">Current Image: </p>
+                <img src={`http://localhost:3000/uploads/${existingImage}`} alt="Current" className="create-recipe-image" />
+              </div>
+            ) : null}
           </div>
 
           <div className="form-group">
