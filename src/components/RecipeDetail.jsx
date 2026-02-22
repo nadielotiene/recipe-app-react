@@ -114,7 +114,7 @@ export default function RecipeDetail({ user }) {
         {/* <p>Category: {recipe.category_id}</p> */}
 
         {user && user.id === recipe.user_id && (
-          <div>
+          <div className="owner-actions">
             <button class="btn btn-edit" onClick={() => navigate(`/edit/${id}`)}>Edit Recipe</button>
             <button class="btn btn-delete" onClick={deleteRecipe}>Delete Recipe</button>
           </div>

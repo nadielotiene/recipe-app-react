@@ -35,10 +35,14 @@
     box-sizing: border-box;
 }
 
+html {
+    /* min-height: 100vh; */
+}
+
 .body {
+    padding-bottom: 2rem;
     font-family: var(--font-body);
     background-color: var(--stone-100);
-    /* min-height: 100vh; */
     color: var(--stone-600);
     line-height: 1.6;
 }
@@ -76,10 +80,12 @@
 
 .nav-logo:hover {
     color: var(--stone-600);
+    margin: 0;
 }
 
 .nav-links {
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     align-items: center;
 }
@@ -122,6 +128,7 @@
     color: var(--stone-600);
     font-weight: 600;
     font-size: 0.9rem;
+    margin: 0;
 }
 
 /* ===================================
@@ -139,7 +146,7 @@
 h1, .title {
     font-family: var(--font-heading);
     text-align: center;
-    margin-bottom: 2rem;
+    /* margin-bottom: 2rem; */
     color: var(--stone-900);
     font-size: clamp(2rem, 5vw, 2.5rem);
 }
@@ -217,6 +224,13 @@ h1, .title {
     cursor: pointer;
     transition: all 0.3s;
     border: 2px solid transparent;
+}
+
+.link-tag {
+    text-decoration: none;
+    color: inherit;
+    margin: 0;
+    padding: 0;
 }
 
 .recipe-card:hover {
@@ -297,7 +311,7 @@ h1, .title {
     background-color: var(--white);
     border-radius: 1.5rem;
     max-width: 50rem;
-    margin: 2rem auto;
+    margin:  auto;
     padding: 2.5rem;
     box-shadow: 0 4px 16px rgba(0,0,0,0.1);
 }
@@ -389,7 +403,7 @@ table td {
     font-size: 0.9rem;
 }
 
-#ownerActions {
+.owner-actions {
     margin-top: 2rem;
     display: flex;
     gap: 1rem;
@@ -432,7 +446,7 @@ table td {
     margin-top: 0.5rem;
 }
 
-#currentImage {
+.current-image {
     margin-top: 0.5rem;
 }
 
@@ -486,7 +500,7 @@ textarea {
 
 .checkbox-group {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: baseline;
     gap: 0.8rem;
 }
@@ -557,8 +571,8 @@ textarea {
 
 .button-group {
     display: flex;
+    justify-content: space-between;
     gap: 1rem;
-    margin-top: 2rem;
 }
 
 /* ===================================
@@ -652,7 +666,7 @@ body.login-page {
     }
     
     .main {
-        margin: 1rem;
+        margin: 0 1rem;
         padding: 1.5rem;
     }
     

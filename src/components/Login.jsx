@@ -111,7 +111,7 @@ export default function Login({ setUser }) {
                 required
               />
             </div>
-            <button type="button" className='cancel-btn'
+            <button type="button" className="btn btn-secondary"
               onClick={handleCancel}        
             >
               Cancel
@@ -151,7 +151,7 @@ export default function Login({ setUser }) {
                 required
               />
             </div>
-            <button type="button" className='cancel-btn'
+            <button type="button"  className="btn btn-secondary"
               onClick={handleCancel}        
             >
               Cancel

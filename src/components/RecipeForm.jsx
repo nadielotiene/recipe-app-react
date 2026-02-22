@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line
-export default function RecipeForm({ user }) {
+export default function RecipeForm({ user, recipe }) {
 
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
@@ -197,10 +197,10 @@ export default function RecipeForm({ user }) {
             </div>
           </div>
 
-
           <div className="form-group">
             <label>Recipe Image (optional)</label>
             <input 
+              className="img-input"
               type="file" 
               accept="image/*"
               onChange={(e) => setImage(e.target.files[0])}
@@ -208,6 +208,10 @@ export default function RecipeForm({ user }) {
               <small class="image-small">
                 Max size: 5MB. Formats: JPG, PNG, GIF, WEBP
               </small>
+              <div className="current-image">
+
+              </div>
+              {/* {!recipe.image ? <p className="image-p">Current image:</p> : <img class="create-recipe-image" src="http://localhost:3000//uploads/${recipe.image}" alt="Current"></img>} */}
           </div>
 
           <div className="form-group">
@@ -221,13 +225,15 @@ export default function RecipeForm({ user }) {
             </div>
           </div>
 
-          <button className="nav-btn nav-btn-primary create-btn" 
-            to="/new-recipe" type="submit">
-            {isEditMode ? "Update Recipe" : "Create Recipe"}
-          </button>
-          <button type="button" className="btn btn-secondary" onClick={handleCancel}>
-            Cancel
-          </button>
+          <div className="button-group">
+            <button type="button" className="btn btn-secondary" onClick={handleCancel}>
+              Cancel
+            </button>
+            <button className="btn btn-primary" 
+              to="/new-recipe" type="submit">
+              {isEditMode ? "Update Recipe" : "Create Recipe"}
+            </button>
+          </div>
         </form>
       </div>
     </div>

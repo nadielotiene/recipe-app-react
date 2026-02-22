@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom'
 
 export default function RecipeCard({ recipe }) {
   return (
-    <Link to={`/recipe/${recipe.id}`}>
+    <Link className="link-tag" to={`/recipe/${recipe.id}`}>
       <div className="recipe-card">
         {recipe.image && recipe.image !== 'null' ? (
-            <img 
+          <img 
             className="recipe-card-image" 
             src={`http://localhost:3000/uploads/${recipe.image}`}
             alt={recipe.title}
@@ -22,7 +22,7 @@ export default function RecipeCard({ recipe }) {
           {recipe.category_name}
         </span>
         <p className="recipe-meta">By {recipe.author}</p>
-        <p className="recipe-meta">Prep {recipe.prep_time}min | Cook {recipe.cook_time}min</p>
+        <p className="recipe-meta">Prep <strong>{recipe.prep_time}</strong> min | Cook <strong>{recipe.cook_time}</strong> min</p>
       </div>
     </Link>
   )

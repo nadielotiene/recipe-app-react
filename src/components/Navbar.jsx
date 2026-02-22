@@ -12,7 +12,7 @@ export default function Navbar({ user, setUser }) {
     <div className="body">
       <nav className="nav">
         <div className="nav-content">
-          <Link className="nav-logo" to="/"><h1 className="nav-logo">🍳 My Recipes</h1></Link>
+          <Link className="link-tag" to="/"><h1 className="nav-logo">🍳 My Recipes</h1></Link>
           {user ? (
             <div className="nav-links">
               <Link className="nav-btn nav-btn-primary" to="/new-recipe">Create Recipe</Link>
