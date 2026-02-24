@@ -510,6 +510,22 @@ app.get('/api/stats', (req, res) => {
     });
 });
 
+// app.use(express.static(path.join(__dirname, 'dist')));
+
+// app.get(/^(?!\/api).*/, (req, res) => {
+//     res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+// });
+
+const distPath = path.resolve(__dirname, 'dist');
+console.log('📁 Serving static files from:', distPath);
+
+app.use(express.static(distPath));
+
+app.get(/^(?!\/api).*/, (req, res) => {
+  console.log('📄 Serving index.html for route:', req.path);
+  res.sendFile(path.join(distPath, 'index.html'));
+});
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
