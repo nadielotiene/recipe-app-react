@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { API_URL } from '../config';
 
 export default function RecipeCard({ recipe }) {
   return (
@@ -7,7 +8,7 @@ export default function RecipeCard({ recipe }) {
         {recipe.image && recipe.image !== 'null' ? (
           <img 
             className="recipe-card-image" 
-            src={`http://localhost:3000/uploads/${recipe.image}`}
+            src={`${API_URL}/uploads/${recipe.image}`}
             alt={recipe.title}
           />
         ) : (

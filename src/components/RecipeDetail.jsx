@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { API_URL } from '../config';
 
 export default function RecipeDetail({ user }) {
 
@@ -15,7 +16,7 @@ export default function RecipeDetail({ user }) {
       setLoading(true);
       setError(null);
   
-      const response = await fetch(`http://localhost:3000/api/recipes/${id}`)
+      const response = await fetch(`${API_URL}/api/recipes/${id}`)
       const data = await response.json()
       setRecipe(data)
       setLoading(false)
@@ -42,7 +43,7 @@ export default function RecipeDetail({ user }) {
     const token = localStorage.getItem('token');
 
     try {
-      const response = await fetch(`http://localhost:3000/api/recipes/${id}`, {
+      const response = await fetch(`${API_URL}/api/recipes/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -72,7 +73,7 @@ export default function RecipeDetail({ user }) {
         <img 
           className="recipe-image"
           src={recipe.image && recipe.image !== "null"
-            ? `http://localhost:3000/uploads/${recipe.image}`
+            ? `${API_URL}/uploads/${recipe.image}`
             : `/default-image.png`
           } 
           alt={recipe.title} 

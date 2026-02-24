@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import RecipeCard from "./RecipeCard"
+import { API_URL } from '../config';
 
 export default function RecipeList() {
 
@@ -14,7 +15,7 @@ async function fetchRecipes() {
     setLoading(true);
     setError(null);
 
-    const response = await fetch("http://localhost:3000/api/recipes")
+    const response = await fetch(`${API_URL}/api/recipes`)
     const data = await response.json()
     setRecipes(data.recipes)
     setLoading(false)

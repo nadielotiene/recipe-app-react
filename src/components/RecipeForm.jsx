@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { API_URL } from '../config';
 
 // eslint-disable-next-line
 export default function RecipeForm({ user, recipe }) {
@@ -48,8 +49,8 @@ export default function RecipeForm({ user, recipe }) {
     }
     try {
       const url = isEditMode
-        ? `http://localhost:3000/api/recipes/${id}`
-        : `http://localhost:3000/api/recipes`;
+        ? `${API_URL}/api/recipes/${id}`
+        : `${API_URL}/api/recipes`;
 
         const method = isEditMode ? "PUT" : "POST";
 
@@ -83,7 +84,7 @@ export default function RecipeForm({ user, recipe }) {
     if (isEditMode) {
       async function fetchRecipe() {
         try {
-          const response = await fetch(`http://localhost:3000/api/recipes/${id}`);
+          const response = await fetch(`${API_URL}/api/recipes/${id}`);
           const recipe = await response.json();
 
           setTitle(recipe.title);
@@ -229,7 +230,7 @@ export default function RecipeForm({ user, recipe }) {
                 <img 
                   className="create-recipe-image"
                   alt="Current" 
-                  src={`http://localhost:3000/uploads/${existingImage}`} 
+                  src={`${API_URL}/uploads/${existingImage}`} 
                 />
               </div>
             ) : null}
