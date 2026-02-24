@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import RecipeCard from "./RecipeCard"
 import { API_URL } from '../config';
+import Loading from './Loading';
 
 export default function RecipeList() {
 
@@ -31,7 +32,15 @@ useEffect(() => {
   fetchRecipes()
 }, [])
 
-if (loading) return <p>Loading recipes...</p>
+if (loading) {
+  return (
+    <div className="body">
+      <div className="container">
+        <Loading message="Loading recipes..." />
+      </div>
+    </div>
+  )
+}
 if (error) return <p>Error: {error}</p>
 
 const filteredRecipes = recipes.filter(recipe => {

@@ -10,6 +10,7 @@ export default function Login({ setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   // function clearForm() {
   //   setUsername("");
@@ -23,6 +24,7 @@ export default function Login({ setUser }) {
 
   async function handleLogin(e) {
     e.preventDefault();
+    setLoading(true);
 
     try {
       const response = await fetch(`${API_URL}/api/auth/login`, {
@@ -48,11 +50,14 @@ export default function Login({ setUser }) {
     } catch (error) {
       console.error('Error:', error);
       setError('Connection error. Make sure API is running!');
+    } finally {
+      setLoading(false);
     }
   }
 
   async function handleSignUp(e) {
     e.preventDefault();
+    setLoading(true);
 
     try {
       const response = await fetch(`${API_URL}/api/auth/signup`, {
@@ -78,6 +83,8 @@ export default function Login({ setUser }) {
     } catch (error) {
       console.error('Error:', error);
       setError('Connection error. Make sure API is running!');
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -114,8 +121,8 @@ export default function Login({ setUser }) {
                 />
               </div>
               <div className="form-group form-btn">
-                <button type="submit" className="btn btn-primary">
-                  Login
+                <button type="submit" disabled={loading} className="btn btn-primary">
+                  {loading ? "Logging in...:" : "Login"}
                 </button>
                 <button type="button" className="btn btn-secondary"
                   onClick={handleCancel}        
@@ -156,10 +163,10 @@ export default function Login({ setUser }) {
                 />
               </div>
               <div className="form-group form-btn">
-                <button type="submit" className="btn btn-primary">
-                  Sign Up
+                <button type="submit" disabled={loading} className="btn btn-primary">
+                  {loading ? "Signing up" : "Sign Up"}
                 </button>
-                <button type="button"  className="btn btn-secondary"
+                <button type="button" className="btn btn-secondary"
                   onClick={handleCancel}        
                 >
                   Cancel

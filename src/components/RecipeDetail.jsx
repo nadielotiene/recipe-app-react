@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { API_URL } from '../config';
+import Loading from './Loading';
 
 export default function RecipeDetail({ user }) {
 
   const [recipe, setRecipe] = useState(null);
+  const [deleting, setDeleting] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -28,7 +30,6 @@ export default function RecipeDetail({ user }) {
   }
   
   useEffect(() => {
-    // eslint-disable-next-line
     fetchRecipes()
     // eslint-disable-next-line
   }, [id])
@@ -36,9 +37,9 @@ export default function RecipeDetail({ user }) {
   async function deleteRecipe() {
     const confirmed = confirm('Are you sure you want to delete this recipe?');
 
-    if (!confirmed) {
-      return;
-    }
+    if (!confirmed) return;
+  
+    setDeleting(true);
 
     const token = localStorage.getItem('token');
 
@@ -60,12 +61,22 @@ export default function RecipeDetail({ user }) {
     } catch (error) {
       console.error('Delete error:', error);
       alert('Error deleting recipe');
+    } finally {
+      setDeleting(false);
     }
   }
 
-  if (loading) { return <p>Loading...</p> }
-  if (error) { return <p>Error: {error}</p> }
-  if (!recipe) { return <p>Recipe not found!</p> }
+ if (loading) {
+  return (
+    <div className="body">
+      <div className="container">
+        <Loading message="Loading recipes..." />
+      </div>
+    </div>
+  )
+}
+  if (error) return <p>Error: {error}</p>
+  if (!recipe) return <p>Recipe not found!</p>
 
   return (
     <div className="body">
@@ -115,8 +126,12 @@ export default function RecipeDetail({ user }) {
 
         {user && user.id === recipe.user_id && (
           <div className="owner-actions">
-            <button class="btn btn-edit" onClick={() => navigate(`/edit/${id}`)}>Edit Recipe</button>
-            <button class="btn btn-delete" onClick={deleteRecipe}>Delete Recipe</button>
+            <button class="btn btn-edit" onClick={() => navigate(`/edit/${id}`)}>
+              Edit Recipe
+            </button>
+            <button class="btn btn-delete" onClick={deleteRecipe}disabled={deleting}>
+              {deleting ? "Deleting..." : "Delete Recipe"}
+            </button>
           </div>
         )}
       </main>

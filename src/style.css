@@ -26,8 +26,6 @@
     --font-heading: "Young Serif", serif;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Young+Serif&display=swap');
-
 /* ===================================
    GLOBAL RESET
    =================================== */
@@ -35,10 +33,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-html {
-    /* min-height: 100vh; */
 }
 
 .body {
@@ -584,6 +578,12 @@ textarea {
     flex-direction: column;
 }
 
+.btn:diabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
 /* ===================================
    ERROR MESSAGES
    =================================== */
@@ -658,6 +658,37 @@ textarea {
    =================================== */
 .hidden {
     display: none !important;
+}
+
+/* ===================================
+   LOADING SPINNER
+   =================================== */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    gap: 1rem;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--stone-150);
+    border-top: 4px solid var(--brown-800);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-container p {
+    color: var(--stone-600);
+    font-size: 1.1rem;
 }
 
 /* ===================================

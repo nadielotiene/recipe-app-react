@@ -17,6 +17,7 @@ export default function RecipeForm({ user, recipe }) {
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [existingImage, setExistingImage] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ export default function RecipeForm({ user, recipe }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setSubmitting(true);
 
     const token = localStorage.getItem("token");
     if (!token) {
@@ -73,6 +75,8 @@ export default function RecipeForm({ user, recipe }) {
     } catch (error ) {
       console.error("Error:", error);
       alert("Connection error");
+    } finally {
+      setSubmitting(false);
     }
   }
 
@@ -248,9 +252,12 @@ export default function RecipeForm({ user, recipe }) {
           </div>
 
           <div className="button-group">
-            <button className="btn btn-primary" 
-              to="/new-recipe" type="submit">
-              {isEditMode ? "Update Recipe" : "Create Recipe"}
+            <button 
+              className="btn btn-primary" 
+              type="submit"
+              disabled={submitting}
+            >
+              {submitting ? "Saving..." : (isEditMode ? "Update Recipe" : "Create Recipe")}
             </button>
             <button type="button" className="btn btn-secondary" onClick={handleCancel}>
               Cancel
