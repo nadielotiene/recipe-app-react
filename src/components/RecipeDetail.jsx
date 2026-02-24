@@ -70,10 +70,10 @@ export default function RecipeDetail({ user }) {
     <div className="body">
       <main className="main">
         <img 
-          class="recipe-image"
+          className="recipe-image"
           src={recipe.image && recipe.image !== "null"
             ? `http://localhost:3000/uploads/${recipe.image}`
-            : `./default-image.png`
+            : `/default-image.png`
           } 
           alt={recipe.title} 
         />
@@ -111,7 +111,6 @@ export default function RecipeDetail({ user }) {
         
         {/* <p>Difficulty: {recipe.difficulty}</p> */}
         {/* <p>Favorite: {recipe.favorite}</p> */}
-        {/* <p>Category: {recipe.category_id}</p> */}
 
         {user && user.id === recipe.user_id && (
           <div className="owner-actions">

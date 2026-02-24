@@ -155,7 +155,6 @@ h1, .title {
     font-family: var(--font-heading);
     color: var(--brown-800);
     font-size: 1.5rem;
-    margin: 2rem 0 1rem;
 }
 
 /* ===================================
@@ -312,11 +311,11 @@ h1, .title {
     display: flex;
     flex-direction: column;
     background-color: var(--white);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
     border-radius: 1.5rem;
     max-width: 50rem;
-    margin:  auto 1rem;
+    margin: auto;
     padding: 2.5rem;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
 }
 
 .recipe-image {
@@ -614,7 +613,7 @@ textarea {
 
 .auth-container {
     background: var(--white);
-    padding: 3rem;
+    padding: 2rem;
     border-radius: 1.5rem;
     box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     width: 100%;
@@ -645,6 +644,11 @@ textarea {
 
 .toggle-form a:hover {
     text-decoration: underline;
+}
+
+.login-error {
+    color: red;
+    text-align: center;
 }
 
 /* ===================================
@@ -699,5 +703,9 @@ textarea {
         width: 100%;
         height: auto;
         border-radius: 0;
+    }
+
+    .recipe-author {
+        margin-top: 2rem;
     }
 }

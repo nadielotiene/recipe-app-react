@@ -56,7 +56,7 @@ const filteredRecipes = recipes.filter(recipe => {
         <input
           className="search-input"
           type="text"
-          placeholder="Search recipes..."
+          placeholder="Search recipes by title, ingredients, or author..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />

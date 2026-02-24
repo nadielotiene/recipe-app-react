@@ -226,7 +226,11 @@ export default function RecipeForm({ user, recipe }) {
             ) : existingImage && existingImage !== "null" ? (
               <div className="current-image">
                 <p className="image-p">Current Image: </p>
-                <img src={`http://localhost:3000/uploads/${existingImage}`} alt="Current" className="create-recipe-image" />
+                <img 
+                  className="create-recipe-image"
+                  alt="Current" 
+                  src={`http://localhost:3000/uploads/${existingImage}`} 
+                />
               </div>
             ) : null}
           </div>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './style.css'; 
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Login from './components/Login';
@@ -12,8 +12,12 @@ function AppContent() {
   const [user, setUser] = useState(() => {
     const saved = localStorage.getItem("user");
     return saved ? JSON.parse(saved) : null;
-});
+  });
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+  
 return (
   <>
     {location.pathname !== "/login" && <Navbar user={user} setUser={setUser} />}

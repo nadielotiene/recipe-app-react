@@ -10,11 +10,11 @@ export default function Login({ setUser }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  function clearForm() {
-    setUsername("");
-    setEmail("");
-    setPassword("");
-  }
+  // function clearForm() {
+  //   setUsername("");
+  //   setEmail("");
+  //   setPassword("");
+  // }
 
   function handleCancel() {
     navigate("/");
@@ -42,7 +42,7 @@ export default function Login({ setUser }) {
         navigate("/"); 
       } else {
         setError(data.error || 'Failed to login');
-        clearForm();
+        // clearForm();
       }
     } catch (error) {
       console.error('Error:', error);
@@ -72,7 +72,7 @@ export default function Login({ setUser }) {
         navigate("/"); 
       } else {
         setError(data.error || 'Failed to signup');
-        clearForm();
+        // clearForm();
       }
     } catch (error) {
       console.error('Error:', error);
@@ -89,8 +89,8 @@ export default function Login({ setUser }) {
       <div className="body login-page">
         <div className="auth-container">
           <h1 className="title">{isLoginMode ? "Login" : "Sign Up"}</h1>
-          {error && <p style={{color: "red"}}>{error}</p>}
           <p className="subtitle">{isLoginMode ? "Login to your account" : "Create an account"}</p>
+          {error &&  <p className="login-error">{error}</p>}
 
           {isLoginMode ? (
             <form onSubmit={handleLogin}>
