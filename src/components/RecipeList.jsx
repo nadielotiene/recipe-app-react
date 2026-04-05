@@ -94,7 +94,6 @@ const filteredRecipes = recipes.filter(recipe => {
           </button>
         </section>
 
-        {/* <div class="loading" id="loading">Loading recipes...</div> */}
         <article className="recipe-grid" id="recipeGrid">
           {filteredRecipes.map(recipe => (
             <RecipeCard key={recipe.id} recipe={recipe} />

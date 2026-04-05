@@ -12,12 +12,6 @@ export default function Login({ setUser }) {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // function clearForm() {
-  //   setUsername("");
-  //   setEmail("");
-  //   setPassword("");
-  // }
-
   function handleCancel() {
     navigate("/");
   }
@@ -45,7 +39,6 @@ export default function Login({ setUser }) {
         navigate("/"); 
       } else {
         setError(data.error || 'Failed to login');
-        // clearForm();
       }
     } catch (error) {
       console.error('Error:', error);
@@ -78,7 +71,6 @@ export default function Login({ setUser }) {
         navigate("/"); 
       } else {
         setError(data.error || 'Failed to signup');
-        // clearForm();
       }
     } catch (error) {
       console.error('Error:', error);
@@ -88,12 +80,7 @@ export default function Login({ setUser }) {
     }
   }
 
-  // function cancelButton() {
-  //   clearForm();
-  // }
-
   return (
-    // <div className="body">
       <div className="body login-page">
         <div className="auth-container">
           <h1 className="title">{isLoginMode ? "Login" : "Sign Up"}</h1>
@@ -185,6 +172,5 @@ export default function Login({ setUser }) {
           </p>
         </div>
       </div>
-    // </div>
   )
 }

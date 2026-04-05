@@ -120,9 +120,6 @@ export default function RecipeDetail({ user }) {
             <li key={index}>{instruction}</li>
            ))}
         </ol>
-        
-        {/* <p>Difficulty: {recipe.difficulty}</p> */}
-        {/* <p>Favorite: {recipe.favorite}</p> */}
 
         {user && user.id === recipe.user_id && (
           <div className="owner-actions">
