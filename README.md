@@ -1,3 +1,6 @@
+![React](https://img.shields.io/badge/React-18-blue)
+![Node](https://img.shields.io/badge/Node.js-16+-green)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 # 🍳 Recipe Management App
 
 A full-stack recipe management application built with React and Express. Users can create, edit, search, and share their favorite recipes with image uploads and user authentication.
